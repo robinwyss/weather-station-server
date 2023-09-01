@@ -7,7 +7,7 @@ const app = express();
 app.use(express.text())
 
 app.post('/', (req, res) => {
-    fs.writeFileSync('data.txt', req.body);
+    fs.writeFileSync(`data-${new Date().getTime()}.txt`, req.body);
     res.send();
 });
 
