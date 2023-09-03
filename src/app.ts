@@ -4,10 +4,12 @@ import fs from 'fs'
 const port = 3000;
 const app = express();
 
-app.use(express.text())
+//app.use(express.text())
+app.use(express.urlencoded({ extended: true })); 
 
 app.post('/', (req, res) => {
-    fs.writeFileSync(`data-${new Date().getTime()}.txt`, req.body);
+    console.log('received '+JSON.stringify(req.body));
+    fs.writeFileSync(`data-${new Date().getTime()}.txt`, JSON.stringify(req.body));
     res.send();
 });
 
